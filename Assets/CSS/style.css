@@ -1,0 +1,80 @@
+body {
+    font-weight: bold;
+}
+
+#bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -3;
+}
+#bg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    min-width: 50%;
+    min-height: 50%;
+}
+
+.jumbotron {
+    margin: auto;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 30px;
+}
+
+.card {
+    margin: auto;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.card:hover {
+    opacity: 1.0;
+}
+
+.card-heading {
+    background-color: black;
+    color: white;
+}
+
+.card-title {
+    padding: 10px;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.card-body {
+    height: auto;
+}
+
+th {
+    margin-left: 10px;
+    padding-right: 40px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+
+.form-group {
+    padding: 10px;
+}
+
+.btn-primary {
+    background-color: black;
+}
