@@ -16,8 +16,6 @@ $(document).ready(function(){
       var destination = "";
       var time = "";
       var frequency = "";
-      var arrival = "";
-      var away = "";
     
       $("#submit-button").on("click", function() {
           event.preventDefault();
@@ -45,6 +43,7 @@ $(document).ready(function(){
 
         var tFrequency = childSnapshot.val().frequency;
         console.log(tFrequency);
+        console.log(typeof tFrequency);
           
         var firstTime = childSnapshot.val().time;
         console.log(firstTime);
@@ -64,6 +63,7 @@ $(document).ready(function(){
         var tMinutesTillTrain = tFrequency - tRemainder;
         console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
+
         var nextTrain = moment().add(tMinutesTillTrain, "minutes");
         console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
         
@@ -76,8 +76,8 @@ $(document).ready(function(){
         $("tbody").append("<td>" + childSnapshot.val().name + "</td>");
         $("tbody").append("<td>" + childSnapshot.val().destination + "</td>");
         $("tbody").append("<td>" + childSnapshot.val().frequency + "</td>");
-        $("tbody").append("<td>" + childSnapshot.val().nextTrain + "</td>");
-        $("tbody").append("<td>" + childSnapshot.val().tMinutesTillTrain + "</td>");
+        $("tbody").append("<td>" + moment(nextTrain).format("hh:mm") + "</td>");
+        $("tbody").append("<td>" + tMinutesTillTrain + "</td>");
 
       });
 
