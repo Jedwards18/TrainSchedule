@@ -1,37 +1,35 @@
 $(document).ready(function(){
 
     var config = {
-        apiKey: "AIzaSyC6VIbcnO_rnlNKjENanOAdSou9t0s5704",
-        authDomain: "test-6a74f.firebaseapp.com",
-        databaseURL: "https://test-6a74f.firebaseio.com",
-        projectId: "test-6a74f",
-        storageBucket: "test-6a74f.appspot.com",
-        messagingSenderId: "867455114751"
+        apiKey: "AIzaSyAnoJQwun3c1rK7OZyTQCzzcuGCr53cMZY",
+        authDomain: "test2-4a58b.firebaseapp.com",
+        databaseURL: "https://test2-4a58b.firebaseio.com",
+        projectId: "test2-4a58b",
+        storageBucket: "test2-4a58b.appspot.com",
+        messagingSenderId: "421089973850"
       };
       firebase.initializeApp(config);
     
       var dataRef = firebase.database();
     
-      var name = "";
       var destination = "";
+      var distance = "";
       var time = "";
       var frequency = "";
     
       $("#submit-button").on("click", function() {
           event.preventDefault();
 
-          var name = $("#train-name-input").val().trim();
           var destination = $("#train-destination-input").val().trim();
+          var distance = $("#train-distance-input").val().trim();
           var time = $("#train-time-input").val().trim();
           var frequency = $("#train-frequency-input").val().trim();
     
           dataRef.ref().push({
-              name: name,
               destination: destination,
+              distance: distance,
               time: time,
               frequency: frequency,
-              //arrival: nextTrain,
-              //away: tMinutesTillTrain,
               dateAdded: firebase.database.ServerValue.TIMESTAMP,
           });
         $("#myForm").each(function() {
@@ -48,40 +46,39 @@ $(document).ready(function(){
         var firstTime = childSnapshot.val().time;
         console.log(firstTime);
 
-        var firstTimeConverted = moment(firstTime, "HH:mm");
+        var firstTimeConverted = moment(firstTime, "MM/DD, HH:mm");
         console.log(firstTimeConverted);
 
         var currentTime = moment();
-        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+        console.log("CURRENT TIME: " + moment(currentTime).format("MM/DD, hh:mm"));
 
-        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        var diffTime = moment().diff(moment(firstTimeConverted), "hours", "minutes");
         console.log("DIFFERENCE IN TIME: " + diffTime);
 
-        var tRemainder = diffTime % tFrequency;
+        var tRemainder = Math.abs(diffTime) % tFrequency;
         console.log(tRemainder);
 
         var tMinutesTillTrain = tFrequency - tRemainder;
-        console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+        console.log("HOURS TILL TRAIN: " + tMinutesTillTrain, "hours", "minutes");
 
 
-        var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-        console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-        
-        console.log(childSnapshot.val().name);
+        var nextTrain = moment().add(tMinutesTillTrain, "hours", "minutes");
+        console.log("ARRIVAL TIME: " + moment(nextTrain).format("MM/DD, hh:mm"));
+
         console.log(childSnapshot.val().destination);
         console.log(childSnapshot.val().time);
         console.log(childSnapshot.val().frequency);
 
-        $("tbody").append("<tr></tr>");
-        $("tbody").append("<td>" + childSnapshot.val().name + "</td>");
-        $("tbody").append("<td>" + childSnapshot.val().destination + "</td>");
-        $("tbody").append("<td>" + childSnapshot.val().frequency + "</td>");
-        $("tbody").append("<td>" + moment(nextTrain).format("hh:mm") + "</td>");
-        $("tbody").append("<td>" + tMinutesTillTrain + "</td>");
+        $("#current-schedule").append("<tr></tr>");
+        $("#current-schedule").append("<td>" + childSnapshot.val().destination + "</td>");
+        $("#current-schedule").append("<td>" + childSnapshot.val().distance + "</td>");
+        $("#current-schedule").append("<td>" + childSnapshot.val().frequency + "</td>");
+        $("#current-schedule").append("<td>" + moment(nextTrain).format("MM/DD, hh:mm") + "</td>");
+        $("#current-schedule").append("<td>" + tMinutesTillTrain.toFixed(2) + "</td>");
 
       });
 
-      $("td").hover(function() {
-          $(this).fadeIn(500);
-      })
+      $("#example").on("shown.bs.collapse", function() {
+          $(this).removeClass('collapse');
+      });
 });

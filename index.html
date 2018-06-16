@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Train Schedule</title>
+    <title>Imperial Freighter Schedule</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -15,19 +15,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--Moment.js-->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="Assets/Javascript/trainSchedule.js"></script>
 </head>
 <body>
 
     <div id="bg">
-        <img src="Assets/Images/train1.jpeg">
+        <img src="Assets/Images/galactic-empire-logo-1.jpg">
     </div>
 
     <div class="container">
 
         <div class="jumbotron">
-            <h1>Train Schedule</h1>
-            <h2>ALL ABOARD!</h2>
+            <h1>Imperial Freighter Schedule</h1>
+            <h2>Imperius Unitada ober Totallex</h2>
         </div>
 
         <!--Current Train Schedule-->
@@ -41,14 +42,14 @@
                         <table class="table table-hover" id="train-table">
                             <thead>
                                 <tr>
-                                    <th>Train Name</th>
                                     <th>Destination</th>
-                                    <th>Frequency(min)</th>
+                                    <th>Distance(parsecs)</th>
+                                    <th>Frequency(hr)</th>
                                     <th>Next Arrival</th>
-                                    <th>Minutes Away</th>
+                                    <th>Hours Away</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody id="current-schedule"></tbody>
                             </tbody>
                         </table>
                     </div>
@@ -58,26 +59,26 @@
 
         <div class="card card-primary">
             <div class="card-heading">
-                <h3 class="card-title"><strong>Add Train</strong></h3>
+                <h3 class="card-title"><strong>Add Destination</strong></h3>
             </div>
             <div class="card-body">
 
                 <!--Entry form for new train-->
                 <form id="myForm">
                     <div class="form-group row">
-                        <label for="train-name-input">Train Name</label>
-                        <input class="form-control" id="train-name-input" type="text">
-                    </div>
-                    <div class="form-group row">
                         <label for="train-destination-input">Destination</label>
                         <input class="form-control" id="train-destination-input" type="text">
                     </div>
                     <div class="form-group row">
-                        <label for="train-time-input">First Train Time (HH:mm - military time)</label>
+                        <label for="train-distance-input">Distance(parsecs)</label>
+                        <input class="form-control" id="train-distance-input" type="text">
+                    </div>
+                    <div class="form-group row">
+                        <label for="train-time-input">Departure Time (MM/DD HH:mm - military time)</label>
                         <input class="form-control" id="train-time-input" type="text">
                     </div>
                     <div class="form-group row">
-                        <label for="train-frequency-input">Frequency(min)</label>
+                        <label for="train-frequency-input">Frequency(hr)</label>
                         <input class="form-control" id="train-frequency-input" type="text">
                     </div>
                     <button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
@@ -85,17 +86,74 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-    </div>
-    
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-primary">
+                    <div class="card-heading" role="tab" id="headingTwo">
+                        <h3 class="card-title">
+                            <a role="button" data-toggle="collapse" href="#example" aria-expanded="false" aria-controls="collapseTwo">List of Destinations</a>
+                        </h3>
+                    </div>
+                        <table id="example" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Distance (parsecs)</th>
+                                    <th scope="col">Frequency (hr)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Corellia</th>
+                                    <td>1.5</td>
+                                    <td>36</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Mustafar</th>
+                                    <td>9.8</td>
+                                    <td>235.2</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kamino</th>
+                                    <td>7.25</td>
+                                    <td>174</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Nar Shaddaa</th>
+                                    <td>7.25</td>
+                                    <td>174</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kessel</th>
+                                    <td>8</td>
+                                    <td>192</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Yavin</th>
+                                    <td>5</td>
+                                    <td>120</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Mandalore</th>
+                                    <td>3.75</td>
+                                    <td>90</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Kashyyyk</th>
+                                    <td>4.75</td>
+                                    <td>114</td>                                   
+                                </tr>
+                                <tr>
+                                    <th scope="row">Dantooine</th>
+                                    <td>5.6</td>
+                                    <td>134.4</td>                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

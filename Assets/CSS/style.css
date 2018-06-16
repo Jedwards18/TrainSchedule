@@ -1,5 +1,16 @@
+@font-face {
+    font-family: "galacticEmpire";
+    src: url("Death\ Star.otf") format("opentype");
+};
+
+@font-face {
+    font-family: "galacticEmpire";
+    src: url("Death\ Star.otf");
+}
+
 body {
-    font-weight: bold;
+    font-family: "galacticEmpire";
+    letter-spacing: 3px;
 }
 
 #bg {
@@ -77,4 +88,11 @@ th {
 
 .btn-primary {
     background-color: black;
+}
+
+a {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
 }
